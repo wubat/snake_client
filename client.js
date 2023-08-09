@@ -8,12 +8,23 @@ const connect = function () {
   })
 
   conn.setEncoding("utf8")
-
+  conn.on("connect",() => {
+    conn.write("Name: ASS")
+  })
+  // conn.on("connect", () => {
+  //   conn.write("Move: up")
+  // })
+  conn.on("connect", () => {
+    setInterval(() => {
+      conn.write("Move: up")}, 50)
+  })
   conn.on("data", (data) => {
     console.log(data)
+    console.log("connected to the game")
   })
 }
 
 module.exports = {
+ 
   connect
 }
